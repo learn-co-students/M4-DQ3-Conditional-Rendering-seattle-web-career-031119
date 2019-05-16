@@ -6,7 +6,7 @@ import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 /*
   I refactored this so the page components are mapped onto
   the HTML component IDs, and the page is loaded into state
-  when a click occurs.
+  when a click occurs.  Menu items are 
 */
 
 const pageMap = {
@@ -20,7 +20,6 @@ class MainBox extends React.Component {
   constructor() {
     super()
     this.state = {
-      selected: null,
       menu: menuItems,
       page: null,
     }

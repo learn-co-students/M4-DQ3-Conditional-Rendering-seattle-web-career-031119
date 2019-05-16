@@ -1,15 +1,15 @@
 import React from 'react'
 import MenuItem from './MenuItem'
 
-const MenuBar = (props) => {
+/*
+I refactored this so MenuItem is a component and its props
+are passed down from the state of MainBox.  The original
+values of the items made on this page are in menuItems.js,
+and are loaded into state in MainBox.  Clicking is handled
+in MainBox, which modifies the array accordingly.
+*/
 
-  /*
-    I refactored this so MenuItem is a component and its props
-    are passed down from the state of MainBox.  The original
-    values of the items made on this page are in menuItems.js,
-    and are loaded into state in MainBox.  Clicking is handled
-    in MainBox, which modifies the array accordingly.
-  */
+const MenuBar = (props) => {
 
   return (
     <div className="ui four item menu">
