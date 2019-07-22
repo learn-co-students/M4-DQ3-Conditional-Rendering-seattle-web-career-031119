@@ -1,24 +1,53 @@
 import React from 'react'
 import MenuBar from '../components/MenuBar.js'
+import menuItems from '../components/menuItems.js'
 import { Profile, Photos, Cocktails, Pokemon} from '../components/Pages.js'
 
-class MainBox extends React.Component {
+/*
+  I refactored this so the page components are mapped onto
+  the HTML component IDs, and the page is loaded into state
+  when a click occurs.  Menu items are 
+*/
 
+const pageMap = {
+  profile: <Profile />,
+  photo: <Photos />,
+  cocktail: <Cocktails />,
+  pokemon: <Pokemon />
+}
+
+class MainBox extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+      menu: menuItems,
+      page: null,
+    }
+  }
+
+  handleClick(ev) {
+    let id = ev.target.id
+    let tempMenu = this.state.menu
+    let item = tempMenu.find( item => item.a.id === id)
+    item.a.className="item active"
+    let others = tempMenu.filter( item => item.a.id !== id)
+    others = others.map( item => item.a.className = "item")
+    // console.log(pageMap[id])
+    this.setState({
+      menu: tempMenu,
+      page: pageMap[id]
+    })
+  }
 
   render() {
 
-    /*
-
-    Replace the code below! Depending on what menu item is selected in the menu, I should render either a Profile, Photos, Cocktails, or Pokemon component.Think of a way to track which menu item was selected. Which component should have state? Which component should have methods to control state? Where should these methods be called?
-
-    */
-
-    const detailsToDisplay = <div>Hi, I'm a div!</div>
-
     return (
       <div>
-        <MenuBar />
-        {detailsToDisplay}
+        <MenuBar
+          handleClick={ev => this.handleClick(ev)}
+          menu={this.state.menu}
+        />
+        {this.state.page}
       </div>
     )
   }
